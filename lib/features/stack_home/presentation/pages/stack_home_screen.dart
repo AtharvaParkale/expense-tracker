@@ -1,8 +1,12 @@
 import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:expense_tracker_app/core/utils/custom_page_router.dart';
+import 'package:expense_tracker_app/core/utils/show_bottomsheet.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:expense_tracker_app/features/dashboard/presentation/pages/dashboard_screen.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/widgets/add_expense_bottomsheet.dart';
 import 'package:expense_tracker_app/features/statistics/presentation/screens/statistics_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StackHomeScreen extends StatefulWidget {
   static route() =>
@@ -64,6 +68,24 @@ class _StackHomeScreenState extends State<StackHomeScreen> {
         child: FloatingActionButton(
           onPressed: () {
             // TODO: handle FAB action
+            // context.read<DashboardBloc>().add(GetExpensesByDateRangeEvent());
+
+            openBottomSheet(
+              context,
+              AddExpenseBottomSheet(
+                onSubmit: (title,category,amount) {
+                  // if (calories != 0 && protein != 0) {
+                  //   final updatedUserMetrics = widget.userMetricsEntity.copyWith(
+                  //     goalCalories: calories,
+                  //     goalProtein: protein,
+                  //     onBoardingStatus: OnboardingStatus.DONE,
+                  //   );
+                  //   context
+                  //       .read<OnboardingBloc>()
+                  //       .add(UpdateUserEvent(userMetricsEntity: updatedUserMetrics));
+                },
+              ),
+            );
           },
           backgroundColor: AppPallete.bgBlack,
           shape: const CircleBorder(),

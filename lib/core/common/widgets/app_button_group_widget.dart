@@ -38,7 +38,7 @@ class _AppButtonGroupWidgetState extends State<AppButtonGroupWidget> {
           child: AppButtonWidget(
             text: widget.buttonOneText,
             bgColor: AppPallete.whiteColor,
-            fontColor: AppPallete.primaryColor,
+            fontColor: AppPallete.bgBlack,
             fontWeight: FontWeight.w600,
             onPressed: widget.handleButtonOneTap,
             isLoading: widget.isButtonOneLoading,
@@ -48,7 +48,7 @@ class _AppButtonGroupWidgetState extends State<AppButtonGroupWidget> {
         Expanded(
           child: AppButtonWidget(
             text: widget.buttonTwoText,
-            bgColor: AppPallete.primaryColor,
+            bgColor: AppPallete.bgBlack,
             fontColor: AppPallete.whiteColor,
             fontWeight: FontWeight.w600,
             onPressed: widget.handleButtonTwoTap,
