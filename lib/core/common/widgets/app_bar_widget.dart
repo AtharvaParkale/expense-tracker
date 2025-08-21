@@ -11,15 +11,15 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppPallete.whiteColor,
+      backgroundColor: AppPallete.bgBlack,
       surfaceTintColor: Colors.transparent,
       title: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Text(
           title,
-          style: appTextTheme.headlineLarge?.copyWith(
-            color: AppPallete.primaryColor,
-            fontWeight: AppFontWeight.bold,
+          style: appTextTheme.bodyLarge?.copyWith(
+            color: AppPallete.whiteColor,
+            fontWeight: AppFontWeight.semiBold,
           ),
         ),
       ),
