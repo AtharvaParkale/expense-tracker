@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppPallete.primaryColor,
+      backgroundColor: AppPallete.whiteColor,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -74,7 +74,10 @@ class _SignUpPageState extends State<SignUpPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const TitleWidget(textOne: 'Get started with ', textTwo: 'BulkBuddy'),
+          const TitleWidget(
+            textOne: 'Get started with ',
+            textTwo: 'Expense Tracker',
+          ),
           const SizedBox(height: 40),
           TextFormFieldWidget(
             controller: nameController,
@@ -134,8 +137,8 @@ class _SignUpPageState extends State<SignUpPage> {
         Expanded(
           child: AppButtonWidget(
             text: isLoading ? 'Please wait...' : 'Signup',
-            bgColor: AppPallete.secondaryColor,
-            fontColor: AppPallete.primaryColor,
+            bgColor: AppPallete.bgBlack,
+            fontColor: AppPallete.whiteColor,
             fontWeight: FontWeight.w700,
             onPressed: () {
               if (formKey.currentState!.validate()) {

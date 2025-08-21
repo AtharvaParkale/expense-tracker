@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppPallete.primaryColor,
+      backgroundColor: AppPallete.whiteColor,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const TitleWidget(textOne: 'Login to ', textTwo: 'BulkBuddy'),
+          const TitleWidget(textOne: 'Login to ', textTwo: 'ExpenseTracker'),
           const SizedBox(height: 40),
           TextFormFieldWidget(
             controller: emailController,
@@ -115,8 +115,8 @@ class _LoginPageState extends State<LoginPage> {
         Expanded(
           child: AppButtonWidget(
             text: isLoading ? 'Please wait...' : 'Login',
-            bgColor: AppPallete.secondaryColor,
-            fontColor: AppPallete.primaryColor,
+            bgColor: AppPallete.bgBlack,
+            fontColor: AppPallete.whiteColor,
             fontWeight: FontWeight.w700,
             onPressed: () {
               if (formKey.currentState!.validate()) {

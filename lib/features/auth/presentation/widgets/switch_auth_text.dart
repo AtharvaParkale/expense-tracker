@@ -25,7 +25,7 @@ class SwitchAuthText extends StatelessWidget {
             fontSize: AppDimensions.smallText,
             fontWeight: FontWeight.w500,
             fontFamily: 'Poppins',
-            color: AppPallete.whiteColor,
+            color: AppPallete.bgBlack,
           ),
           children: [
             TextSpan(
@@ -34,7 +34,7 @@ class SwitchAuthText extends StatelessWidget {
                 fontSize: AppDimensions.smallText,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Poppins',
-                color: AppPallete.secondaryColor,
+                color: AppPallete.primaryColor,
               ),
             ),
           ],

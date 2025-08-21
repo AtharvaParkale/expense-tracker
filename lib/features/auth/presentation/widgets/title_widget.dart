@@ -3,11 +3,7 @@ import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:flutter/material.dart';
 
 class TitleWidget extends StatelessWidget {
-  const TitleWidget({
-    super.key,
-    required this.textOne,
-    required this.textTwo,
-  });
+  const TitleWidget({super.key, required this.textOne, required this.textTwo});
 
   final String textOne;
   final String textTwo;
@@ -21,7 +17,7 @@ class TitleWidget extends StatelessWidget {
           fontSize: AppDimensions.title,
           fontWeight: FontWeight.w700,
           fontFamily: 'Poppins',
-          color: AppPallete.whiteColor,
+          color: AppPallete.bgBlack,
         ),
         children: <TextSpan>[
           TextSpan(
@@ -30,7 +26,7 @@ class TitleWidget extends StatelessWidget {
               fontSize: AppDimensions.title,
               fontWeight: FontWeight.w700,
               fontFamily: 'Poppins',
-              color: AppPallete.secondaryColor,
+              color: AppPallete.primaryColor,
             ),
           ),
         ],
