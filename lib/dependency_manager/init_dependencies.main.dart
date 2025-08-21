@@ -4,6 +4,7 @@ final serviceLocator = GetIt.instance;
 
 Future<void> initDependencies() async {
   AuthDependencies.initiateDependencies(serviceLocator);
+  DashboardDependencies.initiateDependencies(serviceLocator);
 
   final supabase = await Supabase.initialize(
     url: AppSecrets.supabaseUrl,

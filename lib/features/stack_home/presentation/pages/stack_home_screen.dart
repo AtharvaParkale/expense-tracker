@@ -1,6 +1,6 @@
 import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:expense_tracker_app/core/utils/custom_page_router.dart';
-import 'package:expense_tracker_app/features/dashboard/presentation/screens/dashboard_screen.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/pages/dashboard_screen.dart';
 import 'package:expense_tracker_app/features/statistics/presentation/screens/statistics_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +62,9 @@ class _StackHomeScreenState extends State<StackHomeScreen> {
         height: 60,
         width: 60,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            // TODO: handle FAB action
+          },
           backgroundColor: AppPallete.bgBlack,
           shape: const CircleBorder(),
           child: const Icon(Icons.add, color: Colors.white, size: 30),
@@ -72,18 +74,16 @@ class _StackHomeScreenState extends State<StackHomeScreen> {
       bottomNavigationBar: BottomAppBar(
         color: AppPallete.whiteColor,
         shape: const CircularNotchedRectangle(),
-        notchMargin: 2,
+        notchMargin: 6,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [_buildBottomNavItem('Home', Icons.home, 0)],
+            Expanded(
+              child: _buildBottomNavItem(context, 'Home', Icons.home, 0),
             ),
-            const SizedBox(width: 40),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [_buildBottomNavItem('Stats', Icons.bar_chart, 1)],
+            const SizedBox(width: 40), // Space for FAB notch
+            Expanded(
+              child: _buildBottomNavItem(context, 'Stats', Icons.bar_chart, 1),
             ),
           ],
         ),
@@ -91,9 +91,13 @@ class _StackHomeScreenState extends State<StackHomeScreen> {
     );
   }
 
-  Widget _buildBottomNavItem(String label, IconData icon, int index) {
+  Widget _buildBottomNavItem(
+    BuildContext context,
+    String label,
+    IconData icon,
+    int index,
+  ) {
     return MaterialButton(
-      minWidth: 40,
       onPressed: () => _onItemTapped(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -105,6 +109,19 @@ class _StackHomeScreenState extends State<StackHomeScreen> {
                 ? AppPallete.primaryColor
                 : Colors.blueGrey,
             size: 27,
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            style:
+                (Theme.of(context).textTheme.bodySmall ??
+                        const TextStyle(fontSize: 12))
+                    .copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: _selectedIndex == index
+                          ? AppPallete.primaryColor
+                          : Colors.blueGrey,
+                    ),
           ),
         ],
       ),

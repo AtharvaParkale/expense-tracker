@@ -8,10 +8,18 @@ import 'package:expense_tracker_app/features/auth/domain/usecases/current_user.d
 import 'package:expense_tracker_app/features/auth/domain/usecases/user_login.dart';
 import 'package:expense_tracker_app/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:expense_tracker_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:expense_tracker_app/features/dashboard/data/datasource/dashboard_remote_datasource.dart';
+import 'package:expense_tracker_app/features/dashboard/data/datasource/dashboard_remote_datasource_impl.dart';
+import 'package:expense_tracker_app/features/dashboard/data/repositories/dashboard_repository_impl.dart';
+import 'package:expense_tracker_app/features/dashboard/domain/repositories/dashboard_repository.dart';
+import 'package:expense_tracker_app/features/dashboard/domain/usecases/get_expenses_by_date_range.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'dependencies/auth_dependencies.dart';
+
+part 'dependencies/dashboard_dependencies.dart';
 
 part 'init_dependencies.main.dart';
