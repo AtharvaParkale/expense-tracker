@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:expense_tracker_app/core/usecase/usecase.dart';
+import 'package:expense_tracker_app/core/utils/common_methods.dart';
+import 'package:expense_tracker_app/features/dashboard/domain/entities/daily_expense_summary.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/usecases/get_expenses_by_date_range.dart';
 import 'package:meta/meta.dart';
@@ -33,7 +35,17 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     if (r.isEmpty) {
       emit(NoDailyExpensesFoundState());
     } else {
-      emit(DailyExpensesSuccessState(expenses: r));
+      emit(
+        DailyExpensesSuccessState(
+          dailyExpenseSummary: DailyExpenseSummary(
+            r,
+            total: CommonMethods.getTotal(r),
+            totalCount: CommonMethods.getCount(r),
+            average: CommonMethods.getAverage(r),
+            max: CommonMethods.getMaxExpenseAmount(r),
+          ),
+        ),
+      );
     }
   }
 }

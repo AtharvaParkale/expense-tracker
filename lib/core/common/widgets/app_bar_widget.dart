@@ -17,9 +17,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Text(
           title,
-          style: appTextTheme.bodyLarge?.copyWith(
+          style: appTextTheme.titleMedium?.copyWith(
             color: AppPallete.whiteColor,
             fontWeight: AppFontWeight.semiBold,
+            fontSize: 18,
           ),
         ),
       ),

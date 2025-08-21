@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'dashboard_floating_card.dart';
 
 class BaseUIComponentWidget extends StatelessWidget {
-  const BaseUIComponentWidget({super.key});
+  const BaseUIComponentWidget({super.key, required this.floatingWidget});
+
+  final Widget floatingWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +15,14 @@ class BaseUIComponentWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(color: Colors.transparent),
-        const Align(
+        Align(
           alignment: Alignment.bottomCenter,
           child: Stack(
             clipBehavior: Clip.none,
             children: [
               // This
-              DashboardBaseBottomSheetWidget(),
-              DashboardFloatingCard(),
+              const DashboardBaseBottomSheetWidget(),
+              floatingWidget,
             ],
           ),
         ),

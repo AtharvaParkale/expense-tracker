@@ -16,7 +16,7 @@ final class ErrorState extends DashboardState {
 }
 
 final class DailyExpensesSuccessState extends DashboardState {
-  DailyExpensesSuccessState({required this.expenses});
+  DailyExpensesSuccessState({required this.dailyExpenseSummary});
 
-  final List<Expense> expenses;
+  final DailyExpenseSummary dailyExpenseSummary;
 }
