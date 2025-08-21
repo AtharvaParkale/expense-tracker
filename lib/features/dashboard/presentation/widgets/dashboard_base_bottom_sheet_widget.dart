@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/features/dashboard/presentation/widgets/transaction_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardBaseBottomSheetWidget extends StatelessWidget {
@@ -15,22 +16,13 @@ class DashboardBaseBottomSheetWidget extends StatelessWidget {
           topRight: Radius.circular(24),
         ),
       ),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.13),
-            const Text(
-              "Section 1",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            const Text("Scrollable content goes here..."),
-            const SizedBox(height: 400),
-          ],
-        ),
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).size.height * 0.15,
+        left: 16,
+        right: 16,
+        bottom: 17,
       ),
+      child: const TransactionListWidget(),
     );
   }
 }

@@ -20,7 +20,6 @@ class BaseUIComponentWidget extends StatelessWidget {
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-              // This
               const DashboardBaseBottomSheetWidget(),
               floatingWidget,
             ],
