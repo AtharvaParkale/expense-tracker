@@ -9,7 +9,7 @@ class DashboardBaseBottomSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.65,
+      height: getResponsiveHeight(context),
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -26,5 +26,15 @@ class DashboardBaseBottomSheetWidget extends StatelessWidget {
       ),
       child: childWidget,
     );
+  }
+
+  double getResponsiveHeight(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    if (screenHeight < 800) {
+      return screenHeight * 0.5; // medium devices
+    } else {
+      return screenHeight * 0.65; // large devices
+    }
   }
 }

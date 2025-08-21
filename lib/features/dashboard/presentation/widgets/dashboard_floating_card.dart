@@ -25,7 +25,7 @@ class DashboardFloatingCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.22,
+            height: getResponsiveHeight(context),
             padding: const EdgeInsets.all(16),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -43,6 +43,16 @@ class DashboardFloatingCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double getResponsiveHeight(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    if (screenHeight < 800) {
+      return MediaQuery.of(context).size.height * 0.25;
+    } else {
+      return MediaQuery.of(context).size.height * 0.22;
+    }
   }
 
   Expanded _buildSectionTwo() {
