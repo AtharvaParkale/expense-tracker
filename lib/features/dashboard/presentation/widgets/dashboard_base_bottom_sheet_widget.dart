@@ -1,4 +1,4 @@
-import 'package:expense_tracker_app/features/dashboard/presentation/widgets/transaction_list_widget.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/widgets/dashboard_transaction_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardBaseBottomSheetWidget extends StatelessWidget {
