@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/common/widgets/shimmer_widget.dart';
 import 'package:expense_tracker_app/core/constants/app_font_weigth.dart';
 import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:expense_tracker_app/core/theme/app_text_theme.dart';
@@ -20,47 +21,80 @@ class TransactionListWidget extends StatelessWidget {
     );
   }
 
-  ListView _buildList() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: _buildIcon(),
-          title: Text(
-            "Groceries",
+  Widget _buildList() {
+    return ShimmerWidget(
+      isLoading: false,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            decoration: BoxDecoration(
+              color: Colors.white, // background for shimmer
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: _buildTile(),
+          );
+        },
+      ),
+    );
+  }
+
+  Row _buildTile() {
+    return Row(
+      children: [
+        _buildIcon(),
+        const SizedBox(width: 12),
+        _buildHeaderSection(),
+        _buildAmountWidget(),
+      ],
+    );
+  }
+
+  Text _buildAmountWidget() {
+    return Text(
+      "- ₹500",
+      style: appTextTheme.bodyMedium?.copyWith(
+        color: Colors.redAccent,
+        fontWeight: AppFontWeight.semiBold,
+      ),
+    );
+  }
+
+  Expanded _buildHeaderSection() {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Groceries", // your actual text
             style: appTextTheme.bodyMedium?.copyWith(
               color: AppPallete.bgBlack,
               fontWeight: AppFontWeight.semiBold,
             ),
           ),
-          subtitle: Text(
-            "Food",
+          const SizedBox(height: 4),
+          Text(
+            "Food", // your actual subtitle
             style: appTextTheme.bodySmall?.copyWith(
               color: AppPallete.greyColor,
               fontWeight: AppFontWeight.medium,
             ),
           ),
-          trailing: Text(
-            "- ₹500",
-            style: appTextTheme.bodyMedium?.copyWith(
-              color: Colors.redAccent,
-              fontWeight: AppFontWeight.semiBold,
-            ),
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 
   Container _buildIcon() {
     return Container(
-      padding: const EdgeInsets.all(10),
+      width: 40,
+      height: 40,
       decoration: BoxDecoration(
         color: AppPallete.primaryColor.withOpacity(0.15),
-        // light purple bg
         shape: BoxShape.circle,
       ),
       child: const Icon(
