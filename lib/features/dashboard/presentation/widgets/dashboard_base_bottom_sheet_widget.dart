@@ -2,7 +2,9 @@ import 'package:expense_tracker_app/features/dashboard/presentation/widgets/tran
 import 'package:flutter/material.dart';
 
 class DashboardBaseBottomSheetWidget extends StatelessWidget {
-  const DashboardBaseBottomSheetWidget({super.key});
+  const DashboardBaseBottomSheetWidget({super.key, required this.childWidget});
+
+  final Widget childWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class DashboardBaseBottomSheetWidget extends StatelessWidget {
         right: 16,
         bottom: 17,
       ),
-      child: const TransactionListWidget(),
+      child: childWidget,
     );
   }
 }

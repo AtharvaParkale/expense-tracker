@@ -2,9 +2,14 @@ import 'package:expense_tracker_app/features/dashboard/presentation/widgets/dash
 import 'package:flutter/material.dart';
 
 class BaseUIComponentWidget extends StatelessWidget {
-  const BaseUIComponentWidget({super.key, required this.floatingWidget});
+  const BaseUIComponentWidget({
+    super.key,
+    required this.floatingWidget,
+    required this.childWidget,
+  });
 
   final Widget floatingWidget;
+  final Widget childWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,10 @@ class BaseUIComponentWidget extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: Stack(
             clipBehavior: Clip.none,
-            children: [const DashboardBaseBottomSheetWidget(), floatingWidget],
+            children: [
+              DashboardBaseBottomSheetWidget(childWidget: childWidget),
+              floatingWidget,
+            ],
           ),
         ),
       ],

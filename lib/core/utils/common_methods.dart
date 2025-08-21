@@ -22,4 +22,47 @@ class CommonMethods {
     if (expenses.isEmpty) return 0;
     return expenses.map((e) => e.amount).reduce((a, b) => a > b ? a : b);
   }
+
+  static List<Expense> dummyExpenses = [
+    Expense(
+      id: "1",
+      userId: "user1",
+      category: "Food",
+      title: "Groceries",
+      amount: 500,
+      createdAt: "2025-08-21",
+    ),
+    Expense(
+      id: "2",
+      userId: "user1",
+      category: "Transport",
+      title: "Uber Ride",
+      amount: 300,
+      createdAt: "2025-08-21",
+    ),
+    Expense(
+      id: "3",
+      userId: "user1",
+      category: "Shopping",
+      title: "T-shirt",
+      amount: 700,
+      createdAt: "2025-08-21",
+    ),
+    Expense(
+      id: "3",
+      userId: "user1",
+      category: "Shopping",
+      title: "T-shirt",
+      amount: 700,
+      createdAt: "2025-08-21",
+    ),
+    Expense(
+      id: "3",
+      userId: "user1",
+      category: "Shopping",
+      title: "T-shirt",
+      amount: 700,
+      createdAt: "2025-08-21",
+    ),
+  ];
 }

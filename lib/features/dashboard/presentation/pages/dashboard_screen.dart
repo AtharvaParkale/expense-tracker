@@ -4,6 +4,7 @@ import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.d
 import 'package:expense_tracker_app/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:expense_tracker_app/features/dashboard/presentation/widgets/base_ui_component_widget.dart';
 import 'package:expense_tracker_app/features/dashboard/presentation/widgets/dashboard_floating_card.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/widgets/transaction_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,12 +39,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
         builder: (context, state) {
           if (state is DailyExpensesSuccessState) {
             return BaseUIComponentWidget(
+              childWidget: TransactionListWidget(
+                expenses: state.dailyExpenseSummary.dailyExpenses,
+              ),
               floatingWidget: DashboardFloatingCard(
                 dailyExpenseSummary: state.dailyExpenseSummary,
               ),
             );
           } else {
             return const BaseUIComponentWidget(
+              childWidget: TransactionListWidget(expenses: null),
               floatingWidget: DashboardFloatingCard(dailyExpenseSummary: null),
             );
           }

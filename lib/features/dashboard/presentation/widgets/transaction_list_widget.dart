@@ -2,10 +2,14 @@ import 'package:expense_tracker_app/core/common/widgets/shimmer_widget.dart';
 import 'package:expense_tracker_app/core/constants/app_font_weigth.dart';
 import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:expense_tracker_app/core/theme/app_text_theme.dart';
+import 'package:expense_tracker_app/core/utils/common_methods.dart';
+import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
 import 'package:flutter/material.dart';
 
 class TransactionListWidget extends StatelessWidget {
-  const TransactionListWidget({super.key});
+  const TransactionListWidget({super.key, required this.expenses});
+
+  final List<Expense>? expenses;
 
   @override
   Widget build(BuildContext context) {
@@ -23,40 +27,46 @@ class TransactionListWidget extends StatelessWidget {
 
   Widget _buildList() {
     return ShimmerWidget(
-      isLoading: false,
+      isLoading: expenses == null,
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: 5,
+        itemCount: expenses == null
+            ? CommonMethods.dummyExpenses.length
+            : expenses?.length,
         itemBuilder: (context, index) {
+          final expense = expenses == null
+              ? CommonMethods.dummyExpenses[index]
+              : expenses?[index];
           return Container(
             margin: const EdgeInsets.symmetric(vertical: 8),
             padding: const EdgeInsets.symmetric(vertical: 15),
             decoration: BoxDecoration(
-              color: Colors.white, // background for shimmer
+              color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: _buildTile(),
+            child: _buildTile(expense),
           );
         },
       ),
     );
   }
 
-  Row _buildTile() {
+  Row _buildTile(Expense? expense) {
     return Row(
       children: [
         _buildIcon(),
         const SizedBox(width: 12),
-        _buildHeaderSection(),
-        _buildAmountWidget(),
+        _buildHeaderSection(expense),
+        const SizedBox(width: 5),
+        _buildAmountWidget(expense),
       ],
     );
   }
 
-  Text _buildAmountWidget() {
+  Text _buildAmountWidget(Expense? expense) {
     return Text(
-      "- ₹500",
+      expense?.amount.toStringAsFixed(1) ?? "",
       style: appTextTheme.bodyMedium?.copyWith(
         color: Colors.redAccent,
         fontWeight: AppFontWeight.semiBold,
@@ -64,13 +74,13 @@ class TransactionListWidget extends StatelessWidget {
     );
   }
 
-  Expanded _buildHeaderSection() {
+  Expanded _buildHeaderSection(Expense? expense) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Groceries", // your actual text
+            expense?.title ?? "",
             style: appTextTheme.bodyMedium?.copyWith(
               color: AppPallete.bgBlack,
               fontWeight: AppFontWeight.semiBold,
@@ -78,7 +88,7 @@ class TransactionListWidget extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            "Food", // your actual subtitle
+            expense?.category ?? "",
             style: appTextTheme.bodySmall?.copyWith(
               color: AppPallete.greyColor,
               fontWeight: AppFontWeight.medium,
