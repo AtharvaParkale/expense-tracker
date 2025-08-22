@@ -18,9 +18,13 @@ This is a **Expense Tracker App** developed as part of the assignment submission
 - Android Studio or VS Code
 - Android device or emulator
 
+### App apk
+- App apk can be accessed through the app_release_apk folder as well in root project 
+
 ### Clone the Repository
 ```bash
 git clone (This Repo)
 cd (This Repo)
 flutter clean
 flutter pub get
+
