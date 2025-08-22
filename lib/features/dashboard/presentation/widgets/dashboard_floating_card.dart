@@ -104,7 +104,7 @@ class DashboardFloatingCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Rs ${dailyExpenseSummary?.total.toStringAsFixed(2)}',
+              '₹ ${dailyExpenseSummary?.total.toStringAsFixed(2)}',
               style: appTextTheme.titleLarge?.copyWith(
                 color: AppPallete.whiteColor,
                 fontWeight: AppFontWeight.bold,

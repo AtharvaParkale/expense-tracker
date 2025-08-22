@@ -50,12 +50,10 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      color: Colors.red,
-                      child: WeeklyExpensesList(
-                        groupedExpenses: grouped,
-                        height: MediaQuery.of(context).size.height * 0.3,
-                      ),
+                    const SizedBox(height: 30),
+                    WeeklyExpensesList(
+                      groupedExpenses: grouped,
+                      height: MediaQuery.of(context).size.height * 0.3,
                     ),
                     const SizedBox(height: 10),
                     MonthlySpendsChart(expenses: _allExpenses),
