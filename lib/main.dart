@@ -121,18 +121,23 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.7),
       body: Center(
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            onPressed: _authenticate,
+            icon: const Icon(Icons.fingerprint),
+            label: const Text(
+              "Please enable a biometric or device lock to proceed",
             ),
           ),
-          onPressed: _authenticate,
-          icon: const Icon(Icons.fingerprint),
-          label: const Text("Unlock with Biometrics or PIN"),
         ),
       ),
     );
