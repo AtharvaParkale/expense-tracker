@@ -1,3 +1,8 @@
+import 'package:expense_tracker_app/core/common/widgets/card_widget.dart';
+import 'package:expense_tracker_app/core/common/widgets/stat_title.dart';
+import 'package:expense_tracker_app/core/constants/app_font_weigth.dart';
+import 'package:expense_tracker_app/core/theme/app_pallete.dart';
+import 'package:expense_tracker_app/core/theme/app_text_theme.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,45 +27,52 @@ class _CategoryPieChartSelectorState extends State<CategoryPieChartSelector> {
   void initState() {
     super.initState();
 
-    // Get unique months from expenses
     final monthsSet = widget.expenses
         .map((e) => DateFormat('yyyy-MM').format(DateTime.parse(e.createdAt)))
         .toSet();
 
     availableMonths = monthsSet.toList()..sort();
 
-    // Default selection
     selectedMonthKey = availableMonths.isNotEmpty ? availableMonths.first : "";
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (availableMonths.isNotEmpty)
-          DropdownButton<String>(
-            value: selectedMonthKey,
-            items: availableMonths.map((monthKey) {
-              final date = DateFormat('yyyy-MM').parse(monthKey);
-              final label = DateFormat('MMMM yyyy').format(date);
-              return DropdownMenuItem(value: monthKey, child: Text(label));
-            }).toList(),
-            onChanged: (val) {
-              if (val != null) {
-                setState(() {
-                  selectedMonthKey = val;
-                });
-              }
-            },
-          ),
-        const SizedBox(height: 10),
-        if (selectedMonthKey.isNotEmpty)
-          CategoryPieChart(
-            expenses: widget.expenses,
-            monthKey: selectedMonthKey,
-          ),
-      ],
+    return CardWidget(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const StatTitle(title: "Category Breakdown"),
+          const SizedBox(height: 10),
+          if (availableMonths.isNotEmpty)
+            DropdownButton<String>(
+              value: selectedMonthKey,
+              style: appTextTheme.bodyMedium?.copyWith(
+                color: AppPallete.greyColor,
+                fontWeight: AppFontWeight.semiBold,
+                fontSize: 14,
+              ),
+              items: availableMonths.map((monthKey) {
+                final date = DateFormat('yyyy-MM').parse(monthKey);
+                final label = DateFormat('MMMM yyyy').format(date);
+                return DropdownMenuItem(value: monthKey, child: Text(label));
+              }).toList(),
+              onChanged: (val) {
+                if (val != null) {
+                  setState(() {
+                    selectedMonthKey = val;
+                  });
+                }
+              },
+            ),
+          const SizedBox(height: 10),
+          if (selectedMonthKey.isNotEmpty)
+            CategoryPieChart(
+              expenses: widget.expenses,
+              monthKey: selectedMonthKey,
+            ),
+        ],
+      ),
     );
   }
 }

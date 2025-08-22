@@ -2,6 +2,7 @@ import 'package:expense_tracker_app/core/common/widgets/app_bar_widget.dart';
 import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:expense_tracker_app/core/utils/common_methods.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/widgets/no_transaction_widget.dart';
 import 'package:expense_tracker_app/features/statistics/presentation/bloc/statistics_bloc.dart';
 import 'package:expense_tracker_app/features/statistics/presentation/widgets/category_pirchart_selector.dart';
 import 'package:expense_tracker_app/features/statistics/presentation/widgets/monthly_spends_chart.dart';
@@ -39,7 +40,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
         buildWhen: (prev, curr) => _buildWhen(curr),
         builder: (context, state) {
           if (state is ErrorState) {
-            return const Text('Error', style: TextStyle(color: Colors.white));
+            return ErrorWidget(state.message);
           } else if (state is LoadingState) {
             return const Text('Loading', style: TextStyle(color: Colors.white));
           } else if (state is AllExpensesSuccessState) {
@@ -68,14 +69,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
               ),
             );
           } else if (state is NoExpensesFoundState) {
-            return const Text(
-              'No expenses',
-              style: TextStyle(color: Colors.white),
-            );
+            return const NoTransactionWidget();
           } else {
             return const Text(
               'No state',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.red),
             );
           }
         },

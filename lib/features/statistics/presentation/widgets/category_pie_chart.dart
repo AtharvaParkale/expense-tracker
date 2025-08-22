@@ -1,3 +1,6 @@
+import 'package:expense_tracker_app/core/constants/app_font_weigth.dart';
+import 'package:expense_tracker_app/core/theme/app_pallete.dart';
+import 'package:expense_tracker_app/core/theme/app_text_theme.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -62,10 +65,10 @@ class CategoryPieChart extends StatelessWidget {
             color: categoryColors[category],
             title: "${(value / total * 100).toStringAsFixed(1)}%",
             radius: 60,
-            titleStyle: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            titleStyle: appTextTheme.bodyMedium?.copyWith(
+              color: AppPallete.whiteColor,
+              fontWeight: AppFontWeight.semiBold,
+              fontSize: 12,
             ),
           ),
         );
@@ -103,7 +106,11 @@ class CategoryPieChart extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text(
                   "$category (₹${value.toStringAsFixed(0)})",
-                  style: const TextStyle(fontSize: 13),
+                  style: appTextTheme.bodyMedium?.copyWith(
+                    color: AppPallete.greyColor,
+                    fontWeight: AppFontWeight.semiBold,
+                    fontSize: 11,
+                  ),
                 ),
               ],
             );

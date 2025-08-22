@@ -23,6 +23,7 @@ class StatisticsBloc extends Bloc<StatisticsEvent, StatisticsState> {
     GetAllTheExpensesEvent event,
     Emitter<StatisticsState> emit,
   ) async {
+    emit(LoadingState());
     final res = await _getAllExpenses(false);
     res.fold(
       (l) => emit(ErrorState(message: l.message)),
