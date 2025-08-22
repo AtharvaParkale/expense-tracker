@@ -7,7 +7,11 @@ final class DashboardInitial extends DashboardState {}
 
 final class LoadingState extends DashboardState {}
 
-final class NoDailyExpensesFoundState extends DashboardState {}
+final class NoDailyExpensesFoundState extends DashboardState {
+  NoDailyExpensesFoundState({required this.dailyExpenseSummary});
+
+  final DailyExpenseSummary dailyExpenseSummary;
+}
 
 final class ErrorState extends DashboardState {
   ErrorState({required this.message});

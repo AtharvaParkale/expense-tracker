@@ -4,4 +4,10 @@ import 'package:fpdart/fpdart.dart';
 
 abstract interface class DashboardRepository {
   Future<Either<Failure, List<Expense>>> getExpensesByDateRange();
+
+  Future<Either<Failure, List<Expense>>> addExpense({
+    required String title,
+    required String category,
+    required double amount,
+  });
 }

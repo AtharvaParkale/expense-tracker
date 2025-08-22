@@ -18,6 +18,8 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../features/dashboard/domain/usecases/add_expense.dart';
+
 part 'dependencies/auth_dependencies.dart';
 
 part 'dependencies/dashboard_dependencies.dart';

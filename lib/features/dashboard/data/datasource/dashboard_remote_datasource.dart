@@ -5,4 +5,10 @@ abstract class DashBoardRemoteDataSource {
   Session? get currentUserSession;
 
   Future<List<ExpenseModel>> getExpensesByDateRange();
+
+  Future<List<ExpenseModel>> addExpense({
+    required String title,
+    required String category,
+    required double amount,
+  });
 }

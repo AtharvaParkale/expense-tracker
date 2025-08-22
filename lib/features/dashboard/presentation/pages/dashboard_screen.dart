@@ -46,6 +46,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 dailyExpenseSummary: state.dailyExpenseSummary,
               ),
             );
+          } else if (state is NoDailyExpensesFoundState) {
+            return BaseUIComponentWidget(
+              childWidget: const DashboardTransactionListWidget(expenses: []),
+              floatingWidget: DashboardFloatingCard(
+                dailyExpenseSummary: state.dailyExpenseSummary,
+              ),
+            );
           } else {
             return const BaseUIComponentWidget(
               childWidget: DashboardTransactionListWidget(expenses: null),

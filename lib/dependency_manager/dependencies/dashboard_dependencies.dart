@@ -13,9 +13,13 @@ class DashboardDependencies {
       )
       // UseCases
       ..registerFactory(() => GetExpensesByDateRange(serviceLocator()))
+      ..registerFactory(() => AddExpense(serviceLocator()))
       // Bloc
       ..registerLazySingleton(
-        () => DashboardBloc(getExpensesByDateRange: serviceLocator()),
+        () => DashboardBloc(
+          getExpensesByDateRange: serviceLocator(),
+          addExpense: serviceLocator(),
+        ),
       );
   }
 }

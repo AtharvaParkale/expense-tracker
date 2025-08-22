@@ -33,4 +33,34 @@ class DashBoardRepositoryImpl implements DashboardRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Expense>>> addExpense({
+    required String title,
+    required String category,
+    required double amount,
+  }) async {
+    try {
+      if (!await connectionChecker.isConnected) {
+        return left(
+          Failure(
+            Constants.noConnectionErrorMessage,
+            ErrorCodes.noInternetConnectionErrorCode,
+          ),
+        );
+      }
+
+      final expenses = await remoteDataSource.addExpense(
+        title: title,
+        category: category,
+        amount: amount,
+      );
+
+      return right(expenses);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
 }

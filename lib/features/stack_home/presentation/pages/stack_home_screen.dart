@@ -67,22 +67,17 @@ class _StackHomeScreenState extends State<StackHomeScreen> {
         width: 60,
         child: FloatingActionButton(
           onPressed: () {
-            // TODO: handle FAB action
-            // context.read<DashboardBloc>().add(GetExpensesByDateRangeEvent());
-
             openBottomSheet(
               context,
               AddExpenseBottomSheet(
-                onSubmit: (title,category,amount) {
-                  // if (calories != 0 && protein != 0) {
-                  //   final updatedUserMetrics = widget.userMetricsEntity.copyWith(
-                  //     goalCalories: calories,
-                  //     goalProtein: protein,
-                  //     onBoardingStatus: OnboardingStatus.DONE,
-                  //   );
-                  //   context
-                  //       .read<OnboardingBloc>()
-                  //       .add(UpdateUserEvent(userMetricsEntity: updatedUserMetrics));
+                onSubmit: (title, category, amount) {
+                  context.read<DashboardBloc>().add(
+                    AddExpenseEvent(
+                      amount: amount,
+                      title: title,
+                      category: category,
+                    ),
+                  );
                 },
               ),
             );

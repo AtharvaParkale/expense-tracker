@@ -79,7 +79,7 @@ class _AddExpenseBottomSheetState extends State<AddExpenseBottomSheet> {
             value: selectedCategory,
             onChanged: (val) {
               setState(() {
-                selectedCategory = val??"Other";
+                selectedCategory = val ?? "Other";
               });
             },
             validator: (val) => val == null ? "Please select a category" : null,
@@ -103,10 +103,7 @@ class _AddExpenseBottomSheetState extends State<AddExpenseBottomSheet> {
                 print(title);
                 print(category);
                 print(amount);
-                // widget.onSubmit(
-                //   int.parse(titleController.text),
-                //   int.parse(proteinController.text),
-                // );
+                widget.onSubmit(title, category, amount ?? 0.0);
                 Navigator.of(context).pop();
               }
             },

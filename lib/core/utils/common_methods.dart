@@ -23,6 +23,18 @@ class CommonMethods {
     return expenses.map((e) => e.amount).reduce((a, b) => a > b ? a : b);
   }
 
+  static Map<String, String> getTodayRange() {
+    final now = DateTime.now();
+    final startOfDay = DateTime(now.year, now.month, now.day).toIso8601String();
+    final endOfDay =
+    DateTime(now.year, now.month, now.day, 23, 59, 59).toIso8601String();
+
+    return {
+      'start': startOfDay,
+      'end': endOfDay,
+    };
+  }
+
   static List<Expense> dummyExpenses = [
     Expense(
       id: "1",
