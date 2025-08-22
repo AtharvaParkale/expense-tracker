@@ -30,14 +30,14 @@ class CategoryPieChart extends StatelessWidget {
     ];
 
     // Fixed colors (same order as categories)
-    final categoryColors = {
-      'Food': Colors.blue,
-      'Transport': Colors.green,
-      'Shopping': Colors.orange,
-      'Bills': Colors.red,
-      'Entertainment': Colors.purple,
-      'Health': Colors.teal,
-      'Other': Colors.brown,
+    final Map<String, Color> categoryColors = {
+      'Food': const Color(0xFF90CAF9),          // light blue
+      'Transport': const Color(0xFFA5D6A7),     // light green
+      'Shopping': const Color(0xFFFFCC80),      // light orange
+      'Bills': const Color(0xFFEF9A9A),         // soft red
+      'Entertainment': const Color(0xFFCE93D8), // soft purple
+      'Health': const Color(0xFF80CBC4),        // soft teal
+      'Other': const Color(0xFFD7CCC8),         // soft brown / beige
     };
 
     // Aggregate totals for the given month

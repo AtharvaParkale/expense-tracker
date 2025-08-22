@@ -1,4 +1,5 @@
 import 'package:expense_tracker_app/core/common/widgets/app_bar_widget.dart';
+import 'package:expense_tracker_app/core/common/widgets/shimmer_widget.dart';
 import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:expense_tracker_app/core/utils/common_methods.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
@@ -42,41 +43,58 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           if (state is ErrorState) {
             return ErrorWidget(state.message);
           } else if (state is LoadingState) {
-            return const Text('Loading', style: TextStyle(color: Colors.white));
+            return _buildStatsList({}, context, true);
           } else if (state is AllExpensesSuccessState) {
             final grouped = CommonMethods.groupExpensesByWeek(_allExpenses);
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 30),
-                    WeeklyExpensesList(
-                      groupedExpenses: grouped,
-                      height: MediaQuery.of(context).size.height * 0.3,
-                    ),
-                    const SizedBox(height: 20),
-                    MonthlySpendsChart(expenses: _allExpenses),
-                    const SizedBox(height: 20),
-                    CategoryPieChartSelector(
-                      key: ValueKey(_allExpenses.length),
-                      expenses: _allExpenses,
-                    ),
-                    const SizedBox(height: 70),
-                  ],
-                ),
-              ),
-            );
+            return _buildStatsList(grouped, context, false);
           } else if (state is NoExpensesFoundState) {
             return const NoTransactionWidget();
           } else {
-            return const Text(
-              'No state',
-              style: TextStyle(color: Colors.red),
-            );
+            return const Text('No state', style: TextStyle(color: Colors.red));
           }
         },
+      ),
+    );
+  }
+
+  Container _buildStatsList(
+    Map<String, List<Expense>> grouped,
+    BuildContext context,
+    bool isLoading,
+  ) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 30),
+            ShimmerWidget(
+              isLoading: isLoading,
+              child: WeeklyExpensesList(
+                groupedExpenses: grouped,
+                height: MediaQuery.of(context).size.height * 0.3,
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            ShimmerWidget(
+              isLoading: isLoading,
+              child: MonthlySpendsChart(expenses: _allExpenses),
+            ),
+
+            const SizedBox(height: 20),
+
+            ShimmerWidget(
+              isLoading: isLoading,
+              child: CategoryPieChartSelector(
+                key: ValueKey(_allExpenses.length),
+                expenses: _allExpenses,
+              ),
+            ),
+            const SizedBox(height: 70),
+          ],
+        ),
       ),
     );
   }

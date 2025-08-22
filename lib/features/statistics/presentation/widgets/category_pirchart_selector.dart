@@ -43,7 +43,7 @@ class _CategoryPieChartSelectorState extends State<CategoryPieChartSelector> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const StatTitle(title: "Category Breakdown"),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
           if (availableMonths.isNotEmpty)
             DropdownButton<String>(
               value: selectedMonthKey,
