@@ -1,16 +1,26 @@
-# expense_tracker_app
+# Expense Tracker App
 
-A new Flutter project.
+## Overview
+This is a **Expense Tracker App** developed as part of the assignment submission (1% Club).  
+
+---
+
+## APK & Demo
+- **APK Download:** [Download APK](https://drive.google.com/drive/folders/17fsgaxVTlcR4SmQMqo8xJRiCoAts5_7s?usp=sharing)  
+- **Demo Video:** [Watch Demo](https://drive.google.com/drive/folders/17fsgaxVTlcR4SmQMqo8xJRiCoAts5_7s?usp=sharing)  
+
+---
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
+- Flutter SDK installed 
+- Android Studio or VS Code
+- Android device or emulator
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Clone the Repository
+```bash
+git clone (This Repo)
+cd (This Repo)
+flutter clean
+flutter pub get
