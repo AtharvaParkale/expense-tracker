@@ -8,9 +8,9 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: AppPallete.whiteColor,
+      backgroundColor: Color.fromRGBO(120, 126, 248, 1),
       body: Padding(
-        padding: EdgeInsets.all(44.0),
+        padding: EdgeInsets.all(54.0),
         child: Center(child: Image(image: AssetImage(Constants.appLogo))),
       ),
     );
