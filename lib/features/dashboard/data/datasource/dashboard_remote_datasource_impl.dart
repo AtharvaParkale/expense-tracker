@@ -48,15 +48,14 @@ class DashboardRemoteDatasourceImpl implements DashBoardRemoteDataSource {
   Future<PostgrestList> _getExpenses(bool shouldFetchDailyExpenses) async {
     final todayRange = CommonMethods.getTodayRange();
 
-    if(shouldFetchDailyExpenses){
+    if (shouldFetchDailyExpenses) {
       return await supabaseClient
           .from('expenses')
           .select('*')
           .gte('created_at', todayRange['start']!)
           .lte('created_at', todayRange['end']!)
           .eq('user_id', currentUserSession!.user.id);
-    }
-    else{
+    } else {
       return await supabaseClient
           .from('expenses')
           .select('*')

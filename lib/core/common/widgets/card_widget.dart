@@ -20,11 +20,11 @@ class CardWidget extends StatelessWidget {
       margin: margin ?? const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       padding: padding ?? const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: color ?? Colors.white, // subtle card color
+        color: color ?? Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1), // subtle shadow
+            color: Colors.grey.withOpacity(0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),

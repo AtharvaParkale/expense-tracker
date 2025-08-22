@@ -5,19 +5,19 @@ import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.d
 import 'package:expense_tracker_app/features/dashboard/presentation/widgets/transaction_list_widget.dart';
 import 'package:flutter/material.dart';
 
-class AllTransactionsPage extends StatefulWidget {
+class AllExpensesPage extends StatefulWidget {
   static route(expenses) => MaterialPageRoute(
-    builder: (context) => AllTransactionsPage(expenses: expenses),
+    builder: (context) => AllExpensesPage(expenses: expenses),
   );
   final List<Expense>? expenses;
 
-  const AllTransactionsPage({super.key, required this.expenses});
+  const AllExpensesPage({super.key, required this.expenses});
 
   @override
-  State<AllTransactionsPage> createState() => _AllTransactionsPageState();
+  State<AllExpensesPage> createState() => _AllExpensesPageState();
 }
 
-class _AllTransactionsPageState extends State<AllTransactionsPage> {
+class _AllExpensesPageState extends State<AllExpensesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

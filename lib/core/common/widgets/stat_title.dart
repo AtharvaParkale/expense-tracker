@@ -14,16 +14,16 @@ class StatTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 5, // thickness of the line
-          height: 22, // height of the line
+          width: 5,
+          height: 22,
           decoration: BoxDecoration(
             color: AppPallete.primaryColor,
             borderRadius: BorderRadius.circular(
               3,
-            ), // half of width for full round edges
+            ),
           ),
         ),
-        const SizedBox(width: 8), // spacing between line and text
+        const SizedBox(width: 8),
         Text(
           title,
           style: appTextTheme.bodyLarge?.copyWith(

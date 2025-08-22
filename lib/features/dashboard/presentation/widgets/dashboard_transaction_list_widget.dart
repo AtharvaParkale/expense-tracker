@@ -3,7 +3,7 @@ import 'package:expense_tracker_app/core/theme/app_pallete.dart';
 import 'package:expense_tracker_app/core/theme/app_text_theme.dart';
 import 'package:expense_tracker_app/core/utils/custom_page_router.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
-import 'package:expense_tracker_app/features/dashboard/presentation/pages/all_transactions_page.dart';
+import 'package:expense_tracker_app/features/dashboard/presentation/pages/all_expenses_page.dart';
 import 'package:expense_tracker_app/features/dashboard/presentation/widgets/transaction_list_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,7 @@ class DashboardTransactionListWidget extends StatelessWidget {
             Navigator.push(
               context,
               CustomPageRoute.route(
-                AllTransactionsPage(expenses: expenses),
+                AllExpensesPage(expenses: expenses),
                 PageRouteDirection.LEFT,
               ),
             );

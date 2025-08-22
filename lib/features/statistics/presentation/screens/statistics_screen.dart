@@ -48,7 +48,9 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             final grouped = CommonMethods.groupExpensesByWeek(_allExpenses);
             return _buildStatsList(grouped, context, false);
           } else if (state is NoExpensesFoundState) {
-            return const NoTransactionWidget(title: "No expenses found to track");
+            return const NoTransactionWidget(
+              title: "No expenses found to track",
+            );
           } else {
             return const Text('No state', style: TextStyle(color: Colors.red));
           }

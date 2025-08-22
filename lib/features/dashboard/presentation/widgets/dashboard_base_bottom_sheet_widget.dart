@@ -32,9 +32,9 @@ class DashboardBaseBottomSheetWidget extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     if (screenHeight < 800) {
-      return screenHeight * 0.5; // medium devices
+      return screenHeight * 0.5;
     } else {
-      return screenHeight * 0.65; // large devices
+      return screenHeight * 0.65;
     }
   }
 }

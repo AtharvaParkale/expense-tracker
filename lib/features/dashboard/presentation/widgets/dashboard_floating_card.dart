@@ -118,11 +118,11 @@ class DashboardFloatingCard extends StatelessWidget {
 
   SizedBox _buildDivider() {
     return const SizedBox(
-      height: 40, // height of divider
+      height: 40,
       child: VerticalDivider(
-        color: AppPallete.whiteColor, // subtle color
-        thickness: 0.8, // thin line
-        width: 32, // spacing around divider
+        color: AppPallete.whiteColor,
+        thickness: 0.8,
+        width: 32,
       ),
     );
   }

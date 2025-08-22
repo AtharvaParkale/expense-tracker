@@ -98,7 +98,7 @@ class _StackHomeScreenState extends State<StackHomeScreen> {
             Expanded(
               child: _buildBottomNavItem(context, 'Home', Icons.home, 0),
             ),
-            const SizedBox(width: 40), // Space for FAB notch
+            const SizedBox(width: 40), 
             Expanded(
               child: _buildBottomNavItem(context, 'Stats', Icons.bar_chart, 1),
             ),

@@ -77,7 +77,7 @@ class _WeeklyExpensesListState extends State<WeeklyExpensesList> {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.white, // or slightly off-white
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(

@@ -100,7 +100,7 @@ class _MyAppState extends State<MyApp> {
                 _buildAppScreens(),
                 if (!_isAuthenticated &&
                     (_supportedState || _canCheckBiometrics))
-                  _buildLockOverlay(), // show overlay if not authenticated
+                  _buildLockOverlay(),
               ],
             ),
     );

@@ -1,4 +1,3 @@
-
 import 'package:expense_tracker_app/core/common/entities/user.dart';
 import 'package:expense_tracker_app/core/constants/constants.dart';
 import 'package:expense_tracker_app/core/constants/error_codes.dart';

@@ -16,8 +16,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  List<Expense>? _dailyExpenses;
-
   @override
   void initState() {
     super.initState();
@@ -31,9 +29,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       backgroundColor: AppPallete.bgBlack,
       body: BlocConsumer<DashboardBloc, DashboardState>(
         listener: (context, state) {
-          if (state is DailyExpensesSuccessState) {
-            _dailyExpenses = state.dailyExpenseSummary.dailyExpenses;
-          }
+          if (state is DailyExpensesSuccessState) {}
         },
         buildWhen: (prev, curr) => _buildWhen(curr),
         builder: (context, state) {

@@ -22,25 +22,21 @@ class MonthlySpendsChart extends StatelessWidget {
 
     for (final expense in expenses) {
       final date = DateTime.parse(expense.createdAt);
-
-      // ✅ Filter only current year expenses
       if (date.year == currentYear) {
-        final key = DateFormat('yyyy-MM').format(date); // e.g., "2025-08"
+        final key = DateFormat('yyyy-MM').format(date);
         monthlyTotals[key] = (monthlyTotals[key] ?? 0) + expense.amount;
       }
     }
 
     final sortedKeys = monthlyTotals.keys.toList()..sort();
-
-    // Create spots with dummy padding at start and end
     final spots = <FlSpot>[];
     for (int i = 0; i < sortedKeys.length; i++) {
       spots.add(FlSpot(i.toDouble() + 1, monthlyTotals[sortedKeys[i]]!));
     }
 
-    // Add left and right padding
-    spots.insert(0, const FlSpot(0, 0)); // dummy left
-    spots.add(FlSpot(sortedKeys.length + 1, 0)); // dummy right
+
+    spots.insert(0, const FlSpot(0, 0));
+    spots.add(FlSpot(sortedKeys.length + 1, 0));
 
     final maxY = monthlyTotals.values.isEmpty
         ? 100.0
@@ -82,17 +78,17 @@ class MonthlySpendsChart extends StatelessWidget {
                   sideTitles: SideTitles(
                     showTitles: true,
                     interval: 1,
-                    reservedSize: 32, // ✅ extra space for labels
+                    reservedSize: 32,
                     getTitlesWidget: (value, meta) {
                       final index =
-                          value.toInt() - 1; // shift if dummy spot exists
+                          value.toInt() - 1;
                       if (index < 0 || index >= sortedKeys.length)
                         return const SizedBox.shrink();
 
                       final monthKey = sortedKeys[index];
                       final date = DateTime.parse("$monthKey-01");
                       return Padding(
-                        padding: const EdgeInsets.only(top: 4), // extra padding
+                        padding: const EdgeInsets.only(top: 4),
                         child: Text(
                           DateFormat('MMM').format(date),
 
@@ -133,13 +129,13 @@ class MonthlySpendsChart extends StatelessWidget {
                   rotateAngle: 0.0,
                   getTooltipItems: (touchedSpots) {
                     return touchedSpots.map((spot) {
-                      final index = spot.x.toInt() - 1; // shift by -1 because of dummy start
+                      final index = spot.x.toInt() - 1;
 
                       if (index < 0 || index >= sortedKeys.length) {
-                        // ✅ still return a placeholder to match length
+
                         return const LineTooltipItem(
                           "",
-                          TextStyle(fontSize: 0), // invisible tooltip
+                          TextStyle(fontSize: 0),
                         );
                       }
 
@@ -150,7 +146,7 @@ class MonthlySpendsChart extends StatelessWidget {
                         "₹${value.toStringAsFixed(2)}",
                         const TextStyle(color: Colors.white, fontSize: 12),
                       );
-                    }).toList(); // DO NOT filter with whereType, must match touchedSpots.length
+                    }).toList();
                   },
                 ),
               ),

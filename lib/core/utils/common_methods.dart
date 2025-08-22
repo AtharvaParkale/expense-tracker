@@ -92,13 +92,11 @@ class CommonMethods {
   static Map<String, List<Expense>> groupExpensesByWeek(
     List<Expense> expenses,
   ) {
-    // Step 1: Sort expenses by date ascending
     expenses.sort(
       (a, b) =>
           DateTime.parse(a.createdAt).compareTo(DateTime.parse(b.createdAt)),
     );
 
-    // Step 2: Group by week
     final Map<String, List<Expense>> grouped = {};
 
     for (final expense in expenses) {

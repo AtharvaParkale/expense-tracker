@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 class CategoryPieChart extends StatelessWidget {
   final List<Expense> expenses;
-  final String monthKey; // e.g., "2025-08"
+  final String monthKey;
 
   const CategoryPieChart({
     super.key,
@@ -18,7 +18,6 @@ class CategoryPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Fixed categories list
     final categories = [
       'Food',
       'Transport',
@@ -29,18 +28,16 @@ class CategoryPieChart extends StatelessWidget {
       'Other',
     ];
 
-    // Fixed colors (same order as categories)
     final Map<String, Color> categoryColors = {
-      'Food': const Color(0xFF90CAF9),          // light blue
-      'Transport': const Color(0xFFA5D6A7),     // light green
-      'Shopping': const Color(0xFFFFCC80),      // light orange
-      'Bills': const Color(0xFFEF9A9A),         // soft red
-      'Entertainment': const Color(0xFFCE93D8), // soft purple
-      'Health': const Color(0xFF80CBC4),        // soft teal
-      'Other': const Color(0xFFD7CCC8),         // soft brown / beige
+      'Food': const Color(0xFF90CAF9),
+      'Transport': const Color(0xFFA5D6A7),
+      'Shopping': const Color(0xFFFFCC80),
+      'Bills': const Color(0xFFEF9A9A),
+      'Entertainment': const Color(0xFFCE93D8),
+      'Health': const Color(0xFF80CBC4),
+      'Other': const Color(0xFFD7CCC8),
     };
 
-    // Aggregate totals for the given month
     final Map<String, double> categoryTotals = {
       for (var c in categories) c: 0.0,
     };
@@ -88,7 +85,6 @@ class CategoryPieChart extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        // Legend with category + spend amount
         Wrap(
           spacing: 12,
           runSpacing: 8,
