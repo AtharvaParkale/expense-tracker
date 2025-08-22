@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/common/widgets/card_widget.dart';
 import 'package:expense_tracker_app/core/common/widgets/stat_title.dart';
 import 'package:expense_tracker_app/core/constants/app_font_weigth.dart';
 import 'package:expense_tracker_app/core/theme/app_pallete.dart';
@@ -24,12 +25,14 @@ class _WeeklyExpensesListState extends State<WeeklyExpensesList> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const StatTitle(title: "Weekly Breakdown"),
-        const SizedBox(height: 15),
-        _buildBody(),
-      ],
+    return CardWidget(
+      child: Column(
+        children: [
+          const StatTitle(title: "Weekly Breakdown"),
+          const SizedBox(height: 15),
+          _buildBody(),
+        ],
+      ),
     );
   }
 
