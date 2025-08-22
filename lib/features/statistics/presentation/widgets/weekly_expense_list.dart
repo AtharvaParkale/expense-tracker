@@ -23,6 +23,8 @@ class WeeklyExpensesList extends StatefulWidget {
 class _WeeklyExpensesListState extends State<WeeklyExpensesList> {
   final Map<String, bool> _expanded = {};
 
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return CardWidget(
@@ -38,11 +40,13 @@ class _WeeklyExpensesListState extends State<WeeklyExpensesList> {
 
   Widget _buildBody() {
     return Scrollbar(
+      controller: _scrollController,
       thumbVisibility: true,
       child: Container(
         height: widget.height,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: ListView(
+          controller: _scrollController,
           children: widget.groupedExpenses.entries.map((entry) {
             final week = entry.key;
             final weekExpenses = entry.value;

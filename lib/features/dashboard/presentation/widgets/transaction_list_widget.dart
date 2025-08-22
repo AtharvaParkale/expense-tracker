@@ -19,7 +19,7 @@ class TransactionListWidget extends StatelessWidget {
         : expenses!;
 
     if (expenses != null && expenses!.isEmpty) {
-      return const NoTransactionWidget();
+      return const NoTransactionWidget(title: "No expenses added today");
     }
 
     return ShimmerWidget(

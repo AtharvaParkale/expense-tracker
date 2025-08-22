@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart' show Lottie;
 
 class NoTransactionWidget extends StatelessWidget {
-  const NoTransactionWidget({super.key});
+  const NoTransactionWidget({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class NoTransactionWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            "No transactions added today",
+            title,
             textAlign: TextAlign.center,
             style: appTextTheme.bodyMedium?.copyWith(
               color: AppPallete.greyColor,
