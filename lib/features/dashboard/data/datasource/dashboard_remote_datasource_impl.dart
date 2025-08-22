@@ -13,9 +13,9 @@ class DashboardRemoteDatasourceImpl implements DashBoardRemoteDataSource {
   Session? get currentUserSession => supabaseClient.auth.currentSession;
 
   @override
-  Future<List<ExpenseModel>> getExpensesByDateRange() async {
+  Future<List<ExpenseModel>> getAllExpenses(bool shouldFetchForDay) async {
     try {
-      final expenses = await _getDailyExpenses();
+      final expenses = await _getExpenses(shouldFetchForDay);
       return _convertExpensesToList(expenses);
     } on PostgrestException catch (e) {
       throw ServerException(e.message);
@@ -45,22 +45,26 @@ class DashboardRemoteDatasourceImpl implements DashBoardRemoteDataSource {
     return expenses.map((expense) => ExpenseModel.fromJson(expense)).toList();
   }
 
-  Future<PostgrestList> _getDailyExpenses() async {
+  Future<PostgrestList> _getExpenses(bool shouldFetchDailyExpenses) async {
     final todayRange = CommonMethods.getTodayRange();
-    return await supabaseClient
-        .from('expenses')
-        .select('*')
-        .gte('created_at', todayRange['start']!)
-        .lte('created_at', todayRange['end']!)
-        .eq('user_id', currentUserSession!.user.id);
+
+    if(shouldFetchDailyExpenses){
+      return await supabaseClient
+          .from('expenses')
+          .select('*')
+          .gte('created_at', todayRange['start']!)
+          .lte('created_at', todayRange['end']!)
+          .eq('user_id', currentUserSession!.user.id);
+    }
+    else{
+      return await supabaseClient
+          .from('expenses')
+          .select('*')
+          .eq('user_id', currentUserSession!.user.id);
+    }
   }
 
-  Future _addExpense(
-    String title,
-    String category,
-    double amount,
-  ) async {
-
+  Future _addExpense(String title, String category, double amount) async {
     await supabaseClient.from('expenses').insert({
       'title': title,
       'category': category,
@@ -68,7 +72,7 @@ class DashboardRemoteDatasourceImpl implements DashBoardRemoteDataSource {
       'created_at': DateTime.now().toIso8601String(),
     });
 
-    final expenses = await _getDailyExpenses();
+    final expenses = await _getExpenses(true);
 
     return expenses;
   }

@@ -12,7 +12,7 @@ class DashboardDependencies {
         () => DashBoardRepositoryImpl(serviceLocator(), serviceLocator()),
       )
       // UseCases
-      ..registerFactory(() => GetExpensesByDateRange(serviceLocator()))
+      ..registerFactory(() => GetAllExpenses(serviceLocator()))
       ..registerFactory(() => AddExpense(serviceLocator()))
       // Bloc
       ..registerLazySingleton(

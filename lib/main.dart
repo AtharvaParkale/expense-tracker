@@ -3,6 +3,7 @@ import 'package:expense_tracker_app/dependency_manager/init_dependencies.dart';
 import 'package:expense_tracker_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:expense_tracker_app/features/auth/presentation/pages/login_page.dart';
 import 'package:expense_tracker_app/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:expense_tracker_app/features/statistics/presentation/bloc/statistics_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,6 +20,7 @@ void main() async {
         BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
         BlocProvider(create: (_) => serviceLocator<DashboardBloc>()),
+        BlocProvider(create: (_) => serviceLocator<StatisticsBloc>()),
       ],
       child: const MyApp(),
     ),

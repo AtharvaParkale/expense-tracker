@@ -17,7 +17,7 @@ class ExpenseModel extends Expense {
       category: json['category'] ?? '',
       title: json['title'] ?? '',
       amount: json['amount'] ?? 0,
-      createdAt: json['create_at'] ?? '',
+      createdAt: json['created_at'] ?? '',
     );
   }
 

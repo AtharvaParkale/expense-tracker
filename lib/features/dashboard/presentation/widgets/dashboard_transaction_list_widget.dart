@@ -33,7 +33,7 @@ class DashboardTransactionListWidget extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "Daily Transactions",
+          "Daily Expenses",
           style: appTextTheme.titleMedium?.copyWith(
             color: AppPallete.bgBlack,
             fontWeight: AppFontWeight.semiBold,

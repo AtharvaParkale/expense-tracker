@@ -15,7 +15,9 @@ class DashBoardRepositoryImpl implements DashboardRepository {
   const DashBoardRepositoryImpl(this.remoteDataSource, this.connectionChecker);
 
   @override
-  Future<Either<Failure, List<Expense>>> getExpensesByDateRange() async {
+  Future<Either<Failure, List<Expense>>> getExpensesByDateRange(
+    bool shouldFetchDailyExpenses,
+  ) async {
     try {
       if (!await (connectionChecker.isConnected)) {
         return left(
@@ -26,7 +28,9 @@ class DashBoardRepositoryImpl implements DashboardRepository {
         );
       }
 
-      final expenses = await remoteDataSource.getExpensesByDateRange();
+      final expenses = await remoteDataSource.getAllExpenses(
+        shouldFetchDailyExpenses,
+      );
 
       return right(expenses);
     } on ServerException catch (e) {

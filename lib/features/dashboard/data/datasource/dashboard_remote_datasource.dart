@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 abstract class DashBoardRemoteDataSource {
   Session? get currentUserSession;
 
-  Future<List<ExpenseModel>> getExpensesByDateRange();
+  Future<List<ExpenseModel>> getAllExpenses(bool shouldFetchForDay);
 
   Future<List<ExpenseModel>> addExpense({
     required String title,

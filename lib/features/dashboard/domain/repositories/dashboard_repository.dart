@@ -3,7 +3,9 @@ import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.d
 import 'package:fpdart/fpdart.dart';
 
 abstract interface class DashboardRepository {
-  Future<Either<Failure, List<Expense>>> getExpensesByDateRange();
+  Future<Either<Failure, List<Expense>>> getExpensesByDateRange(
+    bool shouldFetchDailyExpenses,
+  );
 
   Future<Either<Failure, List<Expense>>> addExpense({
     required String title,

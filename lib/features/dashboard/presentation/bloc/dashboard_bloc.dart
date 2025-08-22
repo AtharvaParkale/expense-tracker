@@ -4,7 +4,7 @@ import 'package:expense_tracker_app/core/utils/common_methods.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/daily_expense_summary.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/usecases/add_expense.dart';
-import 'package:expense_tracker_app/features/dashboard/domain/usecases/get_expenses_by_date_range.dart';
+import 'package:expense_tracker_app/features/dashboard/domain/usecases/get_all_expenses.dart';
 import 'package:meta/meta.dart';
 
 part 'dashboard_event.dart';
@@ -12,11 +12,11 @@ part 'dashboard_event.dart';
 part 'dashboard_state.dart';
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
-  final GetExpensesByDateRange _getExpensesByDateRange;
+  final GetAllExpenses _getExpensesByDateRange;
   final AddExpense _addExpense;
 
   DashboardBloc({
-    required GetExpensesByDateRange getExpensesByDateRange,
+    required GetAllExpenses getExpensesByDateRange,
     required AddExpense addExpense,
   }) : _getExpensesByDateRange = getExpensesByDateRange,
        _addExpense = addExpense,
@@ -30,7 +30,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     Emitter<DashboardState> emit,
   ) async {
     emit(LoadingState());
-    final res = await _getExpensesByDateRange(NoParams());
+    final res = await _getExpensesByDateRange(true);
     res.fold(
       (l) => emit(ErrorState(message: l.message)),
       (r) => _handleExpensesDataState(emit, r),

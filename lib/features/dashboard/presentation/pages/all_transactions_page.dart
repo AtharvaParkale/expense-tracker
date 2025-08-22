@@ -25,7 +25,7 @@ class _AllTransactionsPageState extends State<AllTransactionsPage> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         title: Text(
-          "All Transactions",
+          "All Expenses",
           style: appTextTheme.bodyLarge?.copyWith(
             color: AppPallete.bgBlack,
             fontWeight: AppFontWeight.semiBold,

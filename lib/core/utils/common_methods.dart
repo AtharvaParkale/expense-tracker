@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class CommonMethods {
   static double getTotal(List<Expense> expenses) {
@@ -26,13 +25,16 @@ class CommonMethods {
   static Map<String, String> getTodayRange() {
     final now = DateTime.now();
     final startOfDay = DateTime(now.year, now.month, now.day).toIso8601String();
-    final endOfDay =
-    DateTime(now.year, now.month, now.day, 23, 59, 59).toIso8601String();
+    final endOfDay = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      23,
+      59,
+      59,
+    ).toIso8601String();
 
-    return {
-      'start': startOfDay,
-      'end': endOfDay,
-    };
+    return {'start': startOfDay, 'end': endOfDay};
   }
 
   static List<Expense> dummyExpenses = [
@@ -77,4 +79,43 @@ class CommonMethods {
       createdAt: "2025-08-21",
     ),
   ];
+
+  static String weekRange(DateTime date) {
+    final startOfWeek = date.subtract(Duration(days: date.weekday - 1));
+    final endOfWeek = startOfWeek.add(const Duration(days: 6));
+    final formatter = DateFormat('MMM d');
+    final year = DateFormat('y');
+
+    return "${formatter.format(startOfWeek)} – ${formatter.format(endOfWeek)} ${year.format(date)}";
+  }
+
+  static Map<String, List<Expense>> groupExpensesByWeek(
+    List<Expense> expenses,
+  ) {
+    final Map<String, List<Expense>> grouped = {};
+
+    for (final expense in expenses) {
+      final dateTime = DateTime.parse(expense.createdAt);
+      final week = weekRange(dateTime); // returns "Aug 12–19 2025"
+
+      grouped.putIfAbsent(week, () => []);
+      grouped[week]!.add(expense);
+    }
+
+    return grouped;
+  }
+
+  static Map<String, double> aggregateMonthlySpends(List<Expense> expenses) {
+    final Map<String, double> monthlySpends = {};
+
+    for (final expense in expenses) {
+      final dateTime = DateTime.parse(expense.createdAt);
+
+      final monthKey = DateFormat('MMM yyyy').format(dateTime);
+
+      monthlySpends[monthKey] = (monthlySpends[monthKey] ?? 0) + expense.amount;
+    }
+
+    return monthlySpends;
+  }
 }
