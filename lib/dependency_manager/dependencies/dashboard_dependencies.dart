@@ -7,9 +7,16 @@ class DashboardDependencies {
       ..registerFactory<DashBoardRemoteDataSource>(
         () => DashboardRemoteDatasourceImpl(serviceLocator()),
       )
+      ..registerFactory<DashboardLocalDataSource>(
+        () => DashboardLocalDatasourceImpl(),
+      )
       // Repository
       ..registerFactory<DashboardRepository>(
-        () => DashBoardRepositoryImpl(serviceLocator(), serviceLocator()),
+        () => DashBoardRepositoryImpl(
+          serviceLocator(),
+          serviceLocator(),
+          serviceLocator(),
+        ),
       )
       // UseCases
       ..registerFactory(() => GetAllExpenses(serviceLocator()))

@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     biometricAuth = LocalAuthentication();
-    _checkBiometricSupport();
+    // _checkBiometricSupport();
     _handleSplashScreen();
   }
 
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
 
     if (mounted) setState(() => _shouldDisplaySplashScreen = false);
 
-    _authenticate();
+    // _authenticate();
   }
 
   Future<void> _authenticate() async {
@@ -98,9 +98,6 @@ class _MyAppState extends State<MyApp> {
           : Stack(
               children: [
                 _buildAppScreens(),
-                if (!_isAuthenticated &&
-                    (_supportedState || _canCheckBiometrics))
-                  _buildLockOverlay(),
               ],
             ),
     );

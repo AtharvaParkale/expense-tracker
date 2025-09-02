@@ -3,6 +3,7 @@ import 'package:expense_tracker_app/core/constants/error_codes.dart';
 import 'package:expense_tracker_app/core/error/exceptions.dart';
 import 'package:expense_tracker_app/core/error/failures.dart';
 import 'package:expense_tracker_app/core/network/connection_checker.dart';
+import 'package:expense_tracker_app/features/dashboard/data/datasource/dashboard_local_datasource.dart';
 import 'package:expense_tracker_app/features/dashboard/data/datasource/dashboard_remote_datasource.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/entities/expense.dart';
 import 'package:expense_tracker_app/features/dashboard/domain/repositories/dashboard_repository.dart';
@@ -10,31 +11,37 @@ import 'package:fpdart/fpdart.dart' show Either, left, right;
 
 class DashBoardRepositoryImpl implements DashboardRepository {
   final DashBoardRemoteDataSource remoteDataSource;
+  final DashboardLocalDataSource localDataSource;
   final ConnectionChecker connectionChecker;
 
-  const DashBoardRepositoryImpl(this.remoteDataSource, this.connectionChecker);
+  const DashBoardRepositoryImpl(
+    this.remoteDataSource,
+    this.connectionChecker,
+    this.localDataSource,
+  );
 
   @override
   Future<Either<Failure, List<Expense>>> getExpensesByDateRange(
     bool shouldFetchDailyExpenses,
   ) async {
     try {
-      if (!await (connectionChecker.isConnected)) {
-        return left(
-          Failure(
-            Constants.noConnectionErrorMessage,
-            ErrorCodes.noInternetConnectionErrorCode,
-          ),
-        );
+      final localExpenses = await localDataSource.getAllExpenses();
+
+      if (localExpenses.isNotEmpty) {
+        return right(localExpenses);
       }
 
-      final expenses = await remoteDataSource.getAllExpenses(
+      final remoteExpenses = await remoteDataSource.getAllExpenses(
         shouldFetchDailyExpenses,
       );
 
-      return right(expenses);
+      await localDataSource.saveExpenses(remoteExpenses);
+
+      return right(remoteExpenses);
     } on ServerException catch (e) {
       return left(Failure(e.message));
+    } catch (e) {
+      return left(Failure(e.toString()));
     }
   }
 
