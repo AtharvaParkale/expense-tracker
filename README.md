@@ -2,9 +2,9 @@
 
 ## App Preview
 
-![Expense Tracker Banner 1](assets/images/preview/banner1.png)
+![Expense Tracker Banner 1](assets/preview/banner1.png)
 
-![Expense Tracker Banner 2](assets/images/preview/banner2.png)
+![Expense Tracker Banner 2](assets/preview/banner2.png)
 
 ---
 
