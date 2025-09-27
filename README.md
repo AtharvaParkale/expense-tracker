@@ -1,5 +1,13 @@
 # Expense Tracker App
 
+## App Preview
+
+![Expense Tracker Banner 1](assets/images/preview/banner1.png)
+
+![Expense Tracker Banner 2](assets/images/preview/banner2.png)
+
+---
+
 ## Overview
 Expense Tracker is a Flutter app that helps users manage and track their expenses efficiently. The app follows **Clean Architecture** principles and uses **BLoC** for state management. It also integrates with **Supabase** as the backend for storing user data.
 
