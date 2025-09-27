@@ -1,30 +1,20 @@
 # Expense Tracker App
 
 ## Overview
-This is a **Expense Tracker App** developed as part of the assignment submission (1% Club).  
+Expense Tracker is a Flutter app that helps users manage and track their expenses efficiently. The app follows **Clean Architecture** principles and uses **BLoC** for state management. It also integrates with **Supabase** as the backend for storing user data.
 
 ---
 
-## APK & Demo
-- **APK Download:** [Download APK](https://drive.google.com/drive/folders/17fsgaxVTlcR4SmQMqo8xJRiCoAts5_7s?usp=sharing)  
-- **Demo Video:** [Watch Demo](https://drive.google.com/drive/folders/17fsgaxVTlcR4SmQMqo8xJRiCoAts5_7s?usp=sharing)  
+## Tech Stack
+- **Frontend:** Flutter  
+- **State Management:** BLoC  
+- **Backend:** Supabase  
+- **Architecture:** Clean Architecture
 
 ---
 
-## Getting Started
-
-### Prerequisites
-- Flutter SDK installed 
-- Android Studio or VS Code
-- Android device or emulator
-
-### App apk
-- App apk can be accessed through the app_release_apk folder as well in root project 
-
-### Clone the Repository
-```bash
-git clone (This Repo)
-cd (This Repo)
-flutter clean
-flutter pub get
-
+## Features
+- Add, edit, and delete expenses
+- Categorize expenses
+- View expense summary
+- Sync data with Supabase
